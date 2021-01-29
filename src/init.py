@@ -11,6 +11,5 @@ def entrypoint(filename):
     else:
         pcp.parallel_coordinate_plot(filename)
 
-
 if __name__ == '__main__':
     entrypoint('./datasets/cars.csv')

@@ -18,8 +18,11 @@ def scatter_plot(filename):
     vals = prompt.choose("Choose 2 parameter:", columns, limit=2, min=2)
     val1 = columns[vals[0]]
     val2 = columns[vals[1]]
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(15, 9))
+    df[val1] = pd.to_numeric(df[val1])
+    df[val2] = pd.to_numeric(df[val2])
     ax.scatter(x = df[val1], y = df[val2])
     plt.xlabel(val1)
     plt.ylabel(val2)
+    fig.show()
     plt.show()
