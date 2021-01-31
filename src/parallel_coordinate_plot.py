@@ -9,7 +9,7 @@ def parallel_coordinate_plot(filename):
   data = csv_reader.readcsv(filename)
   npdata = np.array(data["data"])
 
-  def plot_data_point(datapoint, fig):
+  def plot_data_point(datapoint):
       plt.plot(range(len(datapoint)), datapoint)
 
   print(f"data len: {npdata.shape[0]}")
@@ -20,8 +20,6 @@ def parallel_coordinate_plot(filename):
     section = list(map(lambda n: int(n), section_str.split(':')))
     d = npdata[slice(section[0], section[1], section[2])]
 
-  fig = plt.figure(figsize=[12.8, len(d) * 0.9])
-
   labels = list(map(lambda c: c['name'], data['columns']))
   selection = prompt.choose("Choose parametes", labels)
 
@@ -30,7 +28,7 @@ def parallel_coordinate_plot(filename):
 
   for point_index in range(d.shape[0]):
       datapoint = list(map(lambda idx: d[point_index, :][idx], selection))
-      plot_data_point(datapoint, fig)
+      plot_data_point(datapoint)
 
   plt.title("parallel coordinate plot")
   plt.xticks(range(len(labels)), labels=labels)
